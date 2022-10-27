@@ -59,25 +59,22 @@ public class MecanumDrive {
         backRight = hwMap.get(DcMotor.class, "rightback");
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE); // the back left and front left motors are backwards
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        //backLeft.setDirection(DcMotorSimple.Direction.REVERSE); // the back left and front left motors are backwards
+        //frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-    /**
-     * adds tests to test wiring to test our mecanum wheels gearing and wiring
-     *
-     * @return returns a test for each motor that spins it forwards
-     */
+
+
     List<QQ_Test> getTests() {
         return Arrays.asList(
-                new QQ_TestMotor("Mecanum Wheel -> Front Left", 0.3, frontLeft),
-                new QQ_TestMotor("Mecanum Wheel -> Front Left Bkwds", -0.3, frontLeft),
-                new QQ_TestMotor("Mecanum Wheel -> Front Right", 0.3, frontRight),
-                new QQ_TestMotor("Mecanum Wheel -> Front Right Bkwds", -0.3, frontRight),
-                new QQ_TestMotor("Mecanum Wheel -> Back Left", 0.3, backLeft),
-                new QQ_TestMotor("Mecanum Wheel -> Back Left Bkwds", -0.3, backLeft),
-                new QQ_TestMotor("Mecanum Wheel -> Back Right", 0.3, backRight),
-                new QQ_TestMotor("Mecanum Wheel -> Back Right Bkwds", -0.3, backRight));
+                new QQ_TestMotor("Mecanum Wheel -> Front Left", maxSpeed, frontLeft),
+                new QQ_TestMotor("Mecanum Wheel -> Front Left Bkwds", -maxSpeed, frontLeft),
+                new QQ_TestMotor("Mecanum Wheel -> Front Right", maxSpeed, frontRight),
+                new QQ_TestMotor("Mecanum Wheel -> Front Right Bkwds", -maxSpeed, frontRight),
+                new QQ_TestMotor("Mecanum Wheel -> Back Left", maxSpeed, backLeft),
+                new QQ_TestMotor("Mecanum Wheel -> Back Left Bkwds", -maxSpeed, backLeft),
+                new QQ_TestMotor("Mecanum Wheel -> Back Right", maxSpeed, backRight),
+                new QQ_TestMotor("Mecanum Wheel -> Back Right Bkwds", -maxSpeed, backRight));
     }
 
     /**
