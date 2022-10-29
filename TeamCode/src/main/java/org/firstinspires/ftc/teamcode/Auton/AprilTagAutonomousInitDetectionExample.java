@@ -21,6 +21,8 @@
 
 package org.firstinspires.ftc.teamcode.Auton;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -83,6 +85,7 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
             }
         });
 
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         telemetry.setMsTransmissionInterval(50);
 
         /*
