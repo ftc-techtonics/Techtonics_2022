@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive;
+package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
  * and op modes themselves.
  */
 @Config
-public class DriveConstants {
+public class RRDriveConstants {
 
     /*
      * These are motor constants that should be listed online for your motors.
@@ -86,8 +86,8 @@ public class DriveConstants {
      * You are free to raise this on your own if you would like. It is best determined through experimentation.
 
      */
-    public static double MAX_VEL = 30;  // Maximum of 52.48180821614297;
-    public static double MAX_ACCEL = 30; // Maximum of 52.48180821614297;
+    public static double MAX_VEL = 20;  // 40 is quite fast. Reducing for safe testing  Maximum of 52.48180821614297;
+    public static double MAX_ACCEL = 20; // was 40 Maximum of 52.48180821614297;
     public static double MAX_ANG_VEL = Math.toRadians(184.02607784577722);
     public static double MAX_ANG_ACCEL = Math.toRadians(184.02607784577722);
 

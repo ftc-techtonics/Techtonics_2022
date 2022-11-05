@@ -32,7 +32,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
  */
 
 @Config
-@Autonomous(group = "drive")
+@Autonomous(name ="Coach Auto Camera", group = "Coach Testing")
 public class CoachAutonomousCamera extends LinearOpMode {
 
     public static double DISTANCE = 20;
