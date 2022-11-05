@@ -16,8 +16,12 @@ public class TT_Teleop extends LinearOpMode {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
+        TT_TheAmazingLift TAL=new TT_TheAmazingLift(hardwareMap);
+        int liftCurrentPosition = 0;
+
 
         while (!isStopRequested()) {
+            liftCurrentPosition = TAL.Move(gamepad1.right_stick_y);
             drive.setWeightedDrivePower(
                     new Pose2d(
                             -Math.min(maxPower, gamepad1.left_stick_y),
@@ -29,6 +33,9 @@ public class TT_Teleop extends LinearOpMode {
             drive.update();
 
             Pose2d poseEstimate = drive.getPoseEstimate();
+            telemetry.addData("Lift ", liftCurrentPosition);
+            telemetry.addLine();
+
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
