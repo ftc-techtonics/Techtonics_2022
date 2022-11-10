@@ -5,8 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-
 @TeleOp(group = "Techtonics")
 public class TT_Teleop extends LinearOpMode {
     @Override
@@ -15,13 +13,14 @@ public class TT_Teleop extends LinearOpMode {
         double maxPower = .6;
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        waitForStart();
-        TT_TheAmazingLift TAL=new TT_TheAmazingLift(hardwareMap);
+        TT_TheAmazingLift TAL = new TT_TheAmazingLift(hardwareMap);
+        TT_ArmCode01 arm = new TT_ArmCode01(hardwareMap);
         int liftCurrentPosition = 0;
 
+        waitForStart();
 
         while (!isStopRequested()) {
-            liftCurrentPosition = TAL.Move(gamepad1.right_stick_y);
+            /*
             drive.setWeightedDrivePower(
                     new Pose2d(
                             -Math.min(maxPower, gamepad1.left_stick_y),
@@ -29,17 +28,25 @@ public class TT_Teleop extends LinearOpMode {
                             -Math.min(maxPower, gamepad1.right_stick_x)
                     )
             );
-
             drive.update();
 
+             */
+            liftCurrentPosition = TAL.Move(gamepad1.right_stick_y);
+            int armCurrentPosition = arm.Move(gamepad1.left_stick_y);
             Pose2d poseEstimate = drive.getPoseEstimate();
-            telemetry.addData("Lift ", liftCurrentPosition);
+            telemetry.addData("Lift   ", liftCurrentPosition);
+            telemetry.addData("power ", gamepad1.right_stick_y);
+            telemetry.addData("Lift   ", armCurrentPosition);
+            telemetry.addData("power ", gamepad1.left_stick_y);
             telemetry.addLine();
+            telemetry.update();
 
+            /*
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
             telemetry.update();
+             */
         }
     }
 }

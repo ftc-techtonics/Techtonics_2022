@@ -3,9 +3,6 @@ package org.firstinspires.ftc.teamcode.CoachTesting;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.hardware.rev.RevTouchSensor;
 
 @Config
 @TeleOp(name ="Coach Teleop Lift", group = "Coach Testing")
