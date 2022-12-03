@@ -22,6 +22,7 @@ public class CoachTeleop extends OpMode {
     private Rev2mDistanceSensor sensorRange;
     private boolean distanceTesting = true;
     private static double maxPower = .6;
+    private static enum ScoringPosition {START, LOW, MEDIUM, HIGH, UP};
 
     @Override
     public void init() {
@@ -34,30 +35,9 @@ public class CoachTeleop extends OpMode {
 
     @Override
     public void loop() {
-        if (distanceTesting) {
-            sensorRange = (Rev2mDistanceSensor)hardwareMap.get(DistanceSensor.class, "distance");
-            telemetry.addData("range ", String.format("%.01f in", sensorRange.getDistance(DistanceUnit.INCH)));
-            telemetry.addData("ID ", String.format("%x", sensorRange.getModelID()));
-            telemetry.addData("did time out ", Boolean.toString(sensorRange.didTimeoutOccur()));
-        }
-        /*
-        if (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)) {
-            xPower = gamepad1.left_stick_x;
-            yPower = 0;
-        } else {
-            xPower = 0;
-            yPower = gamepad1.left_stick_y;
-        }
-
-         */
-        if (sensorRange.getDistance(DistanceUnit.INCH) < 12 && gamepad1.left_stick_y < 0) {
-            yPower = 0;
-        }
-        else  {
-            yPower = gamepad1.left_stick_y;
-        }
-
+        yPower = gamepad1.left_stick_y;
         xPower = gamepad1.left_stick_x;
+
         drive.setWeightedDrivePower(
                 new Pose2d(
                         -Math.min(maxPower, yPower),
@@ -65,13 +45,6 @@ public class CoachTeleop extends OpMode {
                         -Math.min(maxPower, gamepad1.right_stick_x)
                 )
         );
-
         drive.update();
-
-        Pose2d poseEstimate = drive.getPoseEstimate();
-        telemetry.addData("x", xPower); //poseEstimate.getX());
-        telemetry.addData("y", yPower); //poseEstimate.getY());
-        telemetry.addData("heading", poseEstimate.getHeading());
-        telemetry.update();
     }
 }

@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.CoachTesting;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+@Disabled
 @Config
 @TeleOp(name ="Coach Teleop Lift", group = "Coach Testing")
 public class CoachTeleopLift extends OpMode {

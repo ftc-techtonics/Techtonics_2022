@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -13,6 +14,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+@Disabled
 @Config
 @Autonomous(name ="Coach Full Auto", group = "Coach Testing")
 public class CoachAutonomous extends LinearOpMode {
