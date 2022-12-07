@@ -111,7 +111,7 @@ public class TT_Teleop extends OpMode {
                 gripper.setPosition(.7);
                 //lift.SetPosition(TT_TheAmazingLift.ScoringPosition.UP);
                 arm.SetPosition(TT_ArmCode01.ScoringPosition.PICKUP_CONE, direction);
-                //hand.setPosition(.7);
+                hand.setPosition(.7);
             }
 
             if (automaticPositioning) {

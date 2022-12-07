@@ -36,6 +36,8 @@ public class TT_ArmCode01 {
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
+    public DcMotorEx getMotor() {return motor;}
+
     public int GetCurrentPosition() {
         return motor.getCurrentPosition();
     }
