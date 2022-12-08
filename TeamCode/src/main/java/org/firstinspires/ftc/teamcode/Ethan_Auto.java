@@ -21,80 +21,84 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 @Autonomous(group = "Techtonics", name = "Ethan_Auto")
 public class Ethan_Auto extends LinearOpMode {
 
-    // Distances made public so we can change in testing
-    public static double DISTANCESTRAIGHT = 51;
-    public static double DISTANCEBACK = 10;
-    public static double DISTANCERIGHT = 17.5;
-    public static double DISTANCELEFT = 17.5;
 
-    // Motors, Servos, and Sensors
-    private RRMecanumDrive drive;
-    private TT_Camera camera;
-    //private TT_TheAmazingLift lift;
-    //private TT_ArmCode01 arm;
-    private Servo hand;
-    private Servo gripper;
+    private Servo hand_servo;
+    private Servo gripper_servo;
+    private final double GRIPPERCLOSED = 0.7;
+    private final double GRIPPEROPEN = 0.35;
 
-    private int signalDetected = 0;
-    private ElapsedTime timer = new ElapsedTime();
-    private double gripperClosed = 0.7;
-    private double gripperOpen = .35;
-
-    DcMotorEx arm_motor;
-    DcMotorEx lift_motor;
+    private DcMotorEx arm_motor;
+    private DcMotorEx lift_motor;
 
     @Override
     public void runOpMode() throws InterruptedException {
         // This enables viewing of the telemetry data through the browser Dashboard
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        // define variables and run the constructors
-        drive = new RRMecanumDrive(hardwareMap);
-        camera = new TT_Camera(hardwareMap);
-        //lift = new TT_TheAmazingLift(hardwareMap);
-        //arm = new TT_ArmCode01(hardwareMap);
-        hand = hardwareMap.get(Servo.class, "hand");
-        gripper = hardwareMap.get(Servo.class, "gripper");
+        hand_servo = hardwareMap.get(Servo.class, "hand");
+        gripper_servo = hardwareMap.get(Servo.class, "gripper");
 
         //initialize arm_motor stuff
         arm_motor = hardwareMap.get(DcMotorEx.class, "arm");
-        //arm_motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         arm_motor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        arm_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        arm_motor.setTargetPosition(0);
+        arm_motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         arm_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        //intiialize lift_motor stuff
         lift_motor = hardwareMap.get(DcMotorEx.class, "lift");
-        //lift_motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         lift_motor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        lift_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        lift_motor.setTargetPosition(0);
+        lift_motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         lift_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         //  After initilize is pressed, but before Play...  show what the camera detects.
         while (!isStarted()) {
-            signalDetected = camera.scanSignal();
-            telemetry.addData("Initialize tagID ", signalDetected);
+            //signalDetected = camera.scanSignal();
+            //telemetry.addData("Initialize tagID ", signalDetected);
+            //telemetry.update();
+        }
+
+        gripper_servo.setPosition(GRIPPERCLOSED);
+        sleep(6000);
+        gripper_servo.setPosition(GRIPPEROPEN);
+        sleep(2000)
+
+        /*
+        hand_servo.setPosition(0);
+        hand_servo.setPosition(0.5);
+        sleep(3000);
+        hand_servo.setPosition(0.8);
+        sleep(3000);
+         */
+
+        /*
+        arm_motor.setPower(0.5);
+        arm_motor.setTargetPosition(400);
+        */
+
+        /*
+        lift_motor.setPower(0.6);
+        lift_motor.setTargetPosition(2500);
+
+        int lift_height;
+        while (lift_motor.isBusy()){
+            lift_height = lift_motor.getCurrentPosition();
+            telemetry.addData("lift_height:",lift_height);
             telemetry.update();
         }
 
-        int lift_height = lift_motor.getCurrentPosition();
-        telemetry.addLine("Lift_Height: " +  lift_height);
-        telemetry.update();
-
-        lift_motor.setTargetPosition(2500);
-        lift_motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        lift_motor.setPower(0.3);
-
-        lift_height =  lift_motor.getCurrentPosition();
-        telemetry.addLine("Lift_Height: " +  lift_height);
-        telemetry.update();
+        sleep(3000);
+        lift_motor.setTargetPosition(700);
+        while (lift_motor.isBusy()){
+            lift_height = lift_motor.getCurrentPosition();
+            telemetry.addData("lift_height:",lift_height);
+            telemetry.update();
+        }
 
         sleep(6000);
-        lift_motor.setTargetPosition(700);
-        lift_motor.setPower(0.3);
-
-        lift_height =  lift_motor.getCurrentPosition();
-        telemetry.addLine("Lift_Height: " +  lift_height);
-        telemetry.update();
+         */
 
     }
 }

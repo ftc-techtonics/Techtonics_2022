@@ -35,6 +35,7 @@ public class TT_ArmCode01 {
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+    
 
     public DcMotorEx getMotor() {return motor;}
 
