@@ -35,6 +35,9 @@ public class Ethan_Auto extends LinearOpMode {
         // This enables viewing of the telemetry data through the browser Dashboard
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
+        Robot TTRobot = new Robot(hardwareMap);
+
+        /*
         hand_servo = hardwareMap.get(Servo.class, "hand");
         gripper_servo = hardwareMap.get(Servo.class, "gripper");
 
@@ -51,7 +54,7 @@ public class Ethan_Auto extends LinearOpMode {
         lift_motor.setTargetPosition(0);
         lift_motor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         lift_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
+         */
 
         //  After initilize is pressed, but before Play...  show what the camera detects.
         while (!isStarted()) {
@@ -60,10 +63,15 @@ public class Ethan_Auto extends LinearOpMode {
             //telemetry.update();
         }
 
+        TTRobot.prepToGrabCone("left");
+        sleep(6000);
+
+        /*
         gripper_servo.setPosition(GRIPPERCLOSED);
         sleep(6000);
         gripper_servo.setPosition(GRIPPEROPEN);
         sleep(2000)
+         */
 
         /*
         hand_servo.setPosition(0);
